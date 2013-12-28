@@ -1,0 +1,3 @@
+# The query needed to change to something like...
+
+full_query = "select %s from %s where %s and w0.location-w1.location=1" % (field_list, table_list, clause_list)
