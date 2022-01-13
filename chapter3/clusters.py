@@ -139,9 +139,10 @@ def hcluster(rows, distance=pearson):
 
 
 def print_clust(clust, labels=None, n=0):
-    for i in range(n): print " ",
+    for i in range(n):
+        print(" ", end="")
     if clust.id < 0:
-        print " -"
+        print(" -")
     else:
         print (clust.id if not labels else labels[clust.id])
     if clust.left:
@@ -160,8 +161,8 @@ def rotate_matrix(data):
 
 def __main__():
     blognames, words, data = read_file("blogdata.txt")
-    kclust = k_cluster(data, k=10)
-    print [blognames[r] for  r in kclust[0]]
+    err, matches = k_cluster(data, k=10)
+    print([blognames[i] for i in matches[0]])
     # clust = hcluster(data)
     # draw_dendogram(clust, blognames, jpeg="blogclust.jpg")
 
@@ -190,7 +191,7 @@ def k_cluster(rows, distance=pearson, k=4):
  
     last_matches = None
     for t in range(15):
-        print 'Iteration %d' % t
+        print('Iteration %d' % t)
         best_matches = [[] for i in range(k)]
 
         # Find what centroid is the closest for each row
@@ -275,7 +276,7 @@ def scale_down(data, distance=pearson, rate=0.01):
                 grad[k][1] += ((loc[k][1] - loc[j][1]) / fakedist[j][k]) * error_term
 
                 totalerror += abs(error_term)
-        print totalerror
+        print(totalerror)
         # If the answer got worse by moving the points we are done.
         if lasterror and lasterror < totalerror: break
         lasterror = totalerror
